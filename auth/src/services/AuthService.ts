@@ -1,8 +1,8 @@
-import {ref} from 'vue';
+import {ref,Ref} from 'vue';
 class AuthService 
 {
-    let jwt =ref("");
-    let error=ref("");
+    private jwt: Ref<string>
+    private error:Ref<string>
 
     constructor(){
         this.jwt = ref("");
@@ -12,8 +12,11 @@ class AuthService
     getJwt(){
         return this.jwt;
     }
+    getError(){
+        return this.error;
+    }
 
-    async login(email,password)
+    async login(email:string,password:string):Promise<boolean>
     {
         try 
         {
@@ -32,20 +35,23 @@ class AuthService
             });
             
             const response = await res.json();
-            if('errors' is response)
+            if('errors' in response)
             {
-                this.error = "Login failed"
+                this.error.value = "Login failed"
                 return false;
             }
-            this.jwt  = data.access_token;
+            this.jwt  = response.data.access_token;
+            return true;
         }
-        catch(error)
+        catch(error:any)
         {
             console.log('error',error);
-            this.error = error;
+            this.error.value = error;
             return false;
         }
     }
 
 
 }
+
+export default AuthService;

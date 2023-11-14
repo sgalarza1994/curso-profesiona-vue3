@@ -1,5 +1,4 @@
 <template>
-    <form>
     <div class="container">
     
     <div class="form-group">
@@ -17,17 +16,30 @@
 
    
   </div>
-  <button type="submit" class="btn btn-primary">Login</button>
+  <button @click="authUser"  class="btn btn-primary">Login</button>
     </div>
 </div>
-</form>
 </template>
 
 <script lang="ts" setup>
 import {Ref,ref} from 'vue';
+import AuthService from '../services/AuthService'
 
 let email:Ref<string> = ref("");
 let password:Ref<string> = ref("");
 
+  const authUser = async () => 
+  {
+     const auth = new AuthService();
+     const response = await auth.login(email.value,password.value)
+     if(response)
+     {
+      alert('login exitoso')
+     }
+     else 
+     {
+      alert('error al realizar el token');
+     }
+  }
 
 </script>
