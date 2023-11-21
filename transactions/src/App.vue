@@ -3,7 +3,7 @@
   <!--Transaction Group-->
    <TransitionGroup name="list" tag="ul">
     <li v-for="note in notes" :key="note">
-    {{ note }}
+     <v-icon name="bi-file-code-fill" scale="2" />{{ note }}
     </li>
     
    </TransitionGroup>
