@@ -1,5 +1,9 @@
 <template>
-   <h3>Count: {{ obj.count }}</h3>
+
+ <h1>count {{ $count }}</h1>
+ <button @click="$sayHello()">Dijo</button>
+<!-- 
+   <h3>Count: {{ obj.count }}</h3> -->
    
    <!-- <h3>Count: {{ count() }}</h3>
   <button @click="$event => count.update((v)=> v+1)">Increment</button>
@@ -15,11 +19,11 @@
 // import {signal} from 'vue-signals/angular'
 
 // const count = signal(0);
-import {reactive,ref} from 'vue';
+// import {reactive,ref} from 'vue';
 
-const obj = reactive({ 
-   count: 0
-})
+// const obj = reactive({ 
+//    count: 0
+// })
 
 
 </script>
